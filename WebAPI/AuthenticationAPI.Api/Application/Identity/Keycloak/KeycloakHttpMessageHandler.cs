@@ -31,12 +31,12 @@ internal sealed class KeycloakHttpMessageHandler : DelegatingHandler
     private async Task<string> GetConfidentialClientAccessTokenAsync(CancellationToken cancellationToken)
     {
         var formData = new KeyValuePair<string, string>[]
-{
+        {
             new("client_id", _options.ConfidentialClientId),
             new("client_secret", _options.ConfidentialClientSecret),
             new("scope", "openid"),
             new("grant_type", "client_credentials")
-};
+        };
 
         using var formDataContent = new FormUrlEncodedContent(formData);
 

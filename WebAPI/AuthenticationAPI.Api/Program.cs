@@ -5,12 +5,10 @@ using AuthenticationAPI.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Goals:
 // Add Keycloak via .NET Aspire ☑️
 // Configure Confidential Client ☑️
 // Create Endpoint for registering ☑️
-// Create Endpoint for logging in
-// Create Endpoint /me
+// Create Endpoint for logging in ☑️
 
 // For .NET Aspire
 builder.AddServiceDefaults();
@@ -48,17 +46,13 @@ app.MapPost("/register", async (RegisterRequest request, IIdentityProvider ident
 .WithTags("Users")
 .WithOpenApi();
 
-app.MapPost("/login", async (RegisterRequest request, IIdentityProvider identityProvider) =>
+app.MapPost("/login", async (LoginRequest request, IIdentityProvider identityProvider) =>
 {
-    var identityId = await identityProvider.RegisterUserAsync(
-        request.FirstName,
-        request.LastName,
-        request.Email,
-        request.Password);
+    var jwt = await identityProvider.LoginUserAsync(request.Email, request.Password);
 
-    return !string.IsNullOrEmpty(identityId) ? Results.Ok(identityId) : Results.Problem();
+    return jwt;
 })
-.WithName("Register")
+.WithName("Login")
 .WithTags("Users")
 .WithOpenApi();
 
