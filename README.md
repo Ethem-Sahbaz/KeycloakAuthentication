@@ -1,4 +1,4 @@
-# Keycloak Integration with .NET Aspire Orchestration
+# Keycloak Integration
 
 This repository documents my learning process and implementation of Keycloak as an identity provider within a .NET Web API project using .NET Aspire Orchestration. The project demonstrates how to configure and use Keycloak for user authentication and registration using both a confidential and a public client.
 
