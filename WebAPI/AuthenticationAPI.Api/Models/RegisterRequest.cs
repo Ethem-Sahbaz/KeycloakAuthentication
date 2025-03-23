@@ -1,3 +1,3 @@
 ﻿namespace AuthenticationAPI.Api.Models;
 
-internal sealed record RegisterRequest(string UserName, string Email, string password);
+internal sealed record RegisterRequest(string FirstName, string LastName, string Email, string Password);
